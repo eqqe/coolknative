@@ -174,8 +174,6 @@ spec:
       labels:
         app: fluentd
     spec:
-      imagePullSecrets:
-        - name: regcred
       containers:
       - env:
         - name: MINIO_ACCESS_KEY

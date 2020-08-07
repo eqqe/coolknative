@@ -23,13 +23,13 @@ func MakeInstallTekton() *cobra.Command {
 		useDefaultKubeconfig(command)
 
 		_, err := kubectlTask("apply", "-f",
-			"https://github.com/tektoncd/pipeline/releases/download/v0.13.0/release.yaml")
+			"https://github.com/tektoncd/pipeline/releases/download/v0.15.1/release.yaml")
 		if err != nil {
 			return err
 		}
 
 		_, err = kubectlTask("apply", "-f",
-			"https://github.com/tektoncd/dashboard/releases/download/v0.7.0/tekton-dashboard-release.yaml")
+			"https://github.com/tektoncd/dashboard/releases/download/v0.8.2/tekton-dashboard-release.yaml")
 		if err != nil {
 			return err
 		}
