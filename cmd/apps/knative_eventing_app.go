@@ -49,6 +49,15 @@ func MakeInstallKnativeEventing() *cobra.Command {
 		if res.ExitCode != 0 {
 			return fmt.Errorf(res.Stderr)
 		}
+		
+		res, err = kubectlTask("apply", "-f",
+			"https://github.com/knative/eventing/releases/download/v0.16.1/eventing-sugar-controller.yaml")
+		if err != nil {
+			return err
+		}
+		if res.ExitCode != 0 {
+			return fmt.Errorf(res.Stderr)
+		}
 
 		res, err = kubectlTask("apply", "-f",
 			"https://github.com/knative/eventing-contrib/releases/download/v0.16.0/natss-channel.yaml")
