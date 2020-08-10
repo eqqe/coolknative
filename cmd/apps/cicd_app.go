@@ -648,7 +648,7 @@ spec:
       targetPath: workspace
   steps:
   - name: run-tests
-    image: eqqe/python-docker-utils-webservices:3.8-slim
+    image: eqqe/python-docker-utils-webservices:3.8.5-slim
     env:
     - name: PYTHONPATH
       value: ..
