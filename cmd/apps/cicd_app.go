@@ -778,6 +778,16 @@ spec:
       value: "{{.Domain}}"
     - name: KNATIVE_SERVING_DOMAIN_TEMPLATE
       value: "{{.KnativeServingDomainTemplate}}"
+    - name: MINIO_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: minio
+          key: accesskey
+    - name: MINIO_SECRET_KEY
+      valueFrom:
+        secretKeyRef:
+          name: minio
+          key: secretkey
     workingDir: /workspace/workspace/test_qa_prod
     command:
     - /bin/bash
