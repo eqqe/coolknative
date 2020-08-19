@@ -67,8 +67,8 @@ const MinioInstanceInstallMsg = `
 	"\n\n" + MinioInstanceInfoMsg + "\n\n" + pkg.ThanksForUsing
 
 var minioInstanceYamlTemplate = `
-apiVersion: operator.min.io/v1
-kind: MinIOInstance
+apiVersion: minio.min.io/v1
+kind: Tenant
 metadata:
   name: minio
   namespace: {{.Namespace}}
@@ -81,27 +81,30 @@ spec:
       prometheus.io/port: "9000"
       prometheus.io/scrape: "true"
   image: minio/minio:RELEASE.2020-08-16T18-39-38Z
-  serviceName: minio-internal-service
+  imagePullPolicy: IfNotPresent
   zones:
-    - name: "zone-0"
-      servers: 4
-  volumesPerServer: 1
+    - servers: 4
+      volumesPerServer: 1
+      volumeClaimTemplate:
+        metadata:
+          name: data
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 10Gi
   mountPath: /export
-  volumeClaimTemplate:
-    metadata:
-      name: data
-    spec:
-      accessModes:
-        - ReadWriteOnce
-      resources:
-        requests:
-          storage: 10Gi
   credsSecret:
     name: minio
   podManagementPolicy: Parallel
   requestAutoCert: false
+  certConfig:
+    commonName: ""
+    organizationName: []
+    dnsNames: []
   liveness:
     initialDelaySeconds: 10
     periodSeconds: 1
-    timeoutSeconds: 1
+    timeoutSeconds: 1    
 `
