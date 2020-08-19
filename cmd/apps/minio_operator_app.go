@@ -26,8 +26,8 @@ func MakeInstallMinioOperator() *cobra.Command {
 		arch := getNodeArchitecture()
 		fmt.Printf("Node architecture: %q\n", arch)
 
-		_, err := kubectlTask("apply", "-f",
-			"https://raw.githubusercontent.com/minio/minio-operator/2.0.9/minio-operator.yaml")
+		_, err := kubectlTask("apply", "-k",
+			"github.com/minio/operator")
 		if err != nil {
 			return err
 		}
