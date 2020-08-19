@@ -77,7 +77,7 @@ func MakeInstallKnativeServing() *cobra.Command {
 		}
 
 		res, err = kubectlTask("apply", "-f",
-			"https://github.com/knative/net-kourier/releases/download/v0.17.0/kourier.yaml")
+			"https://github.com/knative-sandbox/net-kourier/releases/download/v0.17.0/kourier.yaml")
 		if err != nil {
 			return err
 		}
