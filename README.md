@@ -63,7 +63,7 @@ coolknative install cicd -i namespace1 \
 
 ## Pull from a private Git repository
 
-To pull from a private Git repository, you need the address of the ssh server, a known host file ('known-hosts') and a private key file ('ssh-privatekey').
+To pull from a private Git repository, you need the address of the ssh server, a private key file ('ssh-privatekey').
 ```bash
 export G=<FILL IN YOUR GIT SSH SERVER ADDRESS ex: ssh.dev.azure.com>
 export APPS_GIT=<FILL IN YOUR GIT REPO ADDRESS>
@@ -77,7 +77,6 @@ coolknative install cicd -i namespace1 \
     -u $U \
     -p $P \
     -g $G \
-    -k known-hosts \
     -y ssh-privatekey \
     --apps-git $APPS_GIT \
     --file-resources-git $FILE_RESOURCES_GIT
