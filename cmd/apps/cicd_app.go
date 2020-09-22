@@ -38,7 +38,6 @@ type CicdInputData struct {
 
 type SshGitInputData struct {
 	Namespace               string
-	KnownHostsDataBase64    string
 	SshGitServer            string
 	SshPrivateKeyDataBase64 string
 }
@@ -90,7 +89,6 @@ func MakeInstallCicd() *cobra.Command {
 	cicd.Flags().StringP("namespace", "n", "cicd", "Cicd install namespace")
 	cicd.Flags().StringP("token-webservice-1-filename", "d", "", "token webservice 1 filename")
 	cicd.Flags().StringP("token-webservice-2-filename", "e", "", "token webservice 2 filename")
-	cicd.Flags().StringP("known-hosts-filename", "k", "", "known hosts filename")
 	cicd.Flags().StringP("ssh-private-key-filename", "y", "", "ssh private key filename")
 	cicd.Flags().StringP("tls-crt-filename", "", "", "tls certificate (unix) filename")
 	cicd.Flags().StringP("tls-key-filename", "", "", "tls key filename")
@@ -117,7 +115,6 @@ func MakeInstallCicd() *cobra.Command {
 		namespace, _ := command.Flags().GetString("namespace")
 		tokenWebservice1Filename, _ := command.Flags().GetString("token-webservice-1-filename")
 		tokenWebservice2Filename, _ := command.Flags().GetString("token-webservice-2-filename")
-		knownHostsFilename, _ := command.Flags().GetString("known-hosts-filename")
 		sshPrivateKeyFilename, _ := command.Flags().GetString("ssh-private-key-filename")
 		tlsCrtFilename, _ := command.Flags().GetString("tls-crt-filename")
 		tlsKeyFilename, _ := command.Flags().GetString("tls-key-filename")
@@ -228,14 +225,11 @@ func MakeInstallCicd() *cobra.Command {
 			return err
 		}
 
-		if sshGitServer != "" && sshPrivateKeyFilename != "" && knownHostsFilename != "" {
-			err, knownHostsDataBase64 := FileToBase64(knownHostsFilename)
-			check(err)
+		if sshGitServer != "" && sshPrivateKeyFilename != "" {
 			err, sshPrivateKeyDataBase64 := FileToBase64(sshPrivateKeyFilename)
 			check(err)
 			inputData4 := SshGitInputData{
 				Namespace:               namespace,
-				KnownHostsDataBase64:    knownHostsDataBase64,
 				SshGitServer:            sshGitServer,
 				SshPrivateKeyDataBase64: sshPrivateKeyDataBase64,
 			}
@@ -278,8 +272,8 @@ func MakeInstallCicd() *cobra.Command {
 	return cicd
 }
 
-func FileToBase64(knownHosts string) (error, string) {
-	data, err := ioutil.ReadFile(knownHosts)
+func FileToBase64(filename string) (error, string) {
+	data, err := ioutil.ReadFile(filename)
 	check(err)
 	data = []byte(strings.Replace(string(data), "\r\n", "\n", -1))
 	dataBase64 := b64.URLEncoding.EncodeToString(data)
@@ -910,7 +904,6 @@ data:
 var sshGitTemplateYaml = `
 apiVersion: v1
 data:
-  known_hosts: {{.KnownHostsDataBase64}}
   ssh-privatekey: {{.SshPrivateKeyDataBase64}}
 kind: Secret
 metadata:
