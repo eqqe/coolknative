@@ -60,7 +60,7 @@ func MakeInstallKnativeEventing() *cobra.Command {
 		}
 
 		res, err = kubectlTask("apply", "-f",
-			"https://github.com/knative/eventing-contrib/releases/download/v0.18.0/natss-channel.yaml")
+			"https://github.com/knative-sandbox/eventing-natss/releases/download/v0.18.0/eventing-natss.yaml")
 		if err != nil {
 			return err
 		}
