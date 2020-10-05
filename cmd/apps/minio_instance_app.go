@@ -80,7 +80,7 @@ spec:
       prometheus.io/path: /minio/prometheus/metrics
       prometheus.io/port: "9000"
       prometheus.io/scrape: "true"
-  image: minio/minio:RELEASE.2020-10-03T02-19-42Z
+  image: minio/minio
   imagePullPolicy: IfNotPresent
   zones:
     - servers: 4
