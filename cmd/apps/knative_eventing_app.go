@@ -24,7 +24,7 @@ func MakeInstallKnativeEventing() *cobra.Command {
 		useDefaultKubeconfig(command)
 
 		res, err := kubectlTask("apply", "-f",
-			"https://github.com/knative/eventing/releases/download/v0.17.4/eventing-crds.yaml")
+			"https://github.com/knative/eventing/releases/download/v0.18.0/eventing-crds.yaml")
 		if err != nil {
 			return err
 		}
@@ -33,7 +33,7 @@ func MakeInstallKnativeEventing() *cobra.Command {
 		}
 
 		res, err = kubectlTask("apply", "-f",
-			"https://github.com/knative/eventing/releases/download/v0.17.4/eventing-core.yaml")
+			"https://github.com/knative/eventing/releases/download/v0.18.0/eventing-core.yaml")
 		if err != nil {
 			return err
 		}
@@ -42,7 +42,7 @@ func MakeInstallKnativeEventing() *cobra.Command {
 		}
 
 		res, err = kubectlTask("apply", "-f",
-			"https://github.com/knative/eventing/releases/download/v0.17.4/mt-channel-broker.yaml")
+			"https://github.com/knative/eventing/releases/download/v0.18.0/mt-channel-broker.yaml")
 		if err != nil {
 			return err
 		}
@@ -51,7 +51,7 @@ func MakeInstallKnativeEventing() *cobra.Command {
 		}
 		
 		res, err = kubectlTask("apply", "-f",
-			"https://github.com/knative/eventing/releases/download/v0.17.4/eventing-sugar-controller.yaml")
+			"https://github.com/knative/eventing/releases/download/v0.18.0/eventing-sugar-controller.yaml")
 		if err != nil {
 			return err
 		}
@@ -60,7 +60,7 @@ func MakeInstallKnativeEventing() *cobra.Command {
 		}
 
 		res, err = kubectlTask("apply", "-f",
-			"https://github.com/knative/eventing-contrib/releases/download/v0.17.2/natss-channel.yaml")
+			"https://github.com/knative/eventing-contrib/releases/download/v0.18.0/natss-channel.yaml")
 		if err != nil {
 			return err
 		}
