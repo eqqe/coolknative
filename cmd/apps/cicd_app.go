@@ -617,7 +617,7 @@ spec:
       targetPath: workspace
   steps:
   - name: run-tests
-    image: eqqe/python-docker-utils-webservices:3.8.5-slim-2020-08-19-17-02
+    image: python:3.8.5-slim
     env:
     - name: PYTHONPATH
       value: ..
@@ -629,6 +629,7 @@ spec:
     - |
       pip install pytest
       pip install -r requirements.txt
+      pip install -r ../requirements.txt
       pytest -v
 ---
 apiVersion: tekton.dev/v1beta1
@@ -725,7 +726,7 @@ spec:
       targetPath: workspace
   steps:
   - name: run-tests
-    image: eqqe/python-docker-utils-webservices:3.8.5-slim-2020-08-19-17-02
+    image: python:3.8.5-slim
     env:
     - name: PYTHONPATH
       value: ..
@@ -765,6 +766,7 @@ spec:
     - |
       pip install pytest
       pip install -r requirements.txt
+      pip install -r ../requirements.txt
       pytest -v
 ---
 apiVersion: tekton.dev/v1beta1
