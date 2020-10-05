@@ -50,7 +50,7 @@ func MakeInstallKnativeServing() *cobra.Command {
 			enableScaleToZero = enableScaleToZero[1 : len(enableScaleToZero)-1]
 		}
 		res, err := kubectlTask("apply", "-f",
-			"https://github.com/knative/serving/releases/download/v0.17.3/serving-crds.yaml")
+			"https://github.com/knative/serving/releases/download/v0.18.0/serving-crds.yaml")
 		if err != nil {
 			return err
 		}
@@ -59,7 +59,7 @@ func MakeInstallKnativeServing() *cobra.Command {
 		}
 
 		res, err = kubectlTask("apply", "-f",
-			"https://github.com/knative/serving/releases/download/v0.17.3/serving-core.yaml")
+			"https://github.com/knative/serving/releases/download/v0.18.0/serving-core.yaml")
 		if err != nil {
 			return err
 		}
@@ -68,7 +68,7 @@ func MakeInstallKnativeServing() *cobra.Command {
 		}
 
 		res, err = kubectlTask("apply", "-f",
-			"https://github.com/knative/serving/releases/download/v0.17.3/serving-hpa.yaml")
+			"https://github.com/knative/serving/releases/download/v0.18.0/serving-hpa.yaml")
 		if err != nil {
 			return err
 		}
@@ -77,7 +77,7 @@ func MakeInstallKnativeServing() *cobra.Command {
 		}
 
 		res, err = kubectlTask("apply", "-f",
-			"https://github.com/knative-sandbox/net-kourier/releases/download/v0.17.2/kourier.yaml")
+			"https://github.com/knative-sandbox/net-kourier/releases/download/v0.18.0/kourier.yaml")
 		if err != nil {
 			return err
 		}
