@@ -591,6 +591,7 @@ spec:
     - |
       mc config host add minio http://minio-hl.minio:9000 $MINIO_ACCESS_KEY $MINIO_SECRET_KEY --api S3v4
       mc mb minio/apps-resources
+      mc mb minio/client-data
       mc cp -r /workspace/workspace/ minio/apps-resources
 ---
 apiVersion: tekton.dev/v1alpha1
